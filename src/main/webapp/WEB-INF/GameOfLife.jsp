@@ -10,24 +10,27 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-
-function refreshMatrix(){
-var refrehsUrl = "<%=request.getContextPath()%>/refreshMatrix";
-
 	
-	$.ajax({
-		url : refrehsUrl,
-		data: ${"matrix"},
-		type: 'POST',
-		success : function(resp) {
-			alert(resp);
-		},
-		error : function(e) {
-			alert('Error: ' + e);
+	function refreshMatrix(){
+		var refrehsUrl = "<%=request.getContextPath()%>/refreshMatrix";
+		$.ajax({
+			url : refrehsUrl,
+			data :JSON.stringify(<%=request.getAttribute("matrix")%>),
+			type : 'POST',
+			success : function(resp) {
+				alert(resp);
+			},
+			error : function(e) {
+				alert('Error: ' + e);
+			}
+		});
+	}
+	$( document ).ready(function() {
+	    console.log( "ready!" );
+	    for (i = 0; i < 10; i++) {
+			setTimeout(refreshMatrix, 2000);
 		}
 	});
-}
-	
 </script>
 <style type="text/css">
 .div-table {
