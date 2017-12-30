@@ -15,11 +15,8 @@
 		var refrehsUrl = "<%=request.getContextPath()%>/refreshMatrix";
 		$.ajax({
 			url : refrehsUrl,
-			data :JSON.stringify(<%=request.getAttribute("matrix")%>),
 			type : 'POST',
-			success : function(resp) {
-				alert(resp);
-			},
+			success : handleRefreshData,
 			error : function(e) {
 				alert('Error: ' + e);
 			}
@@ -27,10 +24,19 @@
 	}
 	$( document ).ready(function() {
 	    console.log( "ready!" );
-	    for (i = 0; i < 10; i++) {
-			setTimeout(refreshMatrix, 2000);
+	    for (i = 1; i <100; i++) {
+			setTimeout(refreshMatrix, 2000*i);
+			if(i==99){
+				i=1;
+			}
 		}
 	});
+	
+	function handleRefreshData(resp){
+		$("#theMatrix").empty();
+		var newMatrix = $(resp).find('#theMatrix').html();
+		$("#theMatrix").html(newMatrix);
+	}
 </script>
 <style type="text/css">
 .div-table {
@@ -73,6 +79,9 @@
 					</c:forEach>
 				</div>
 			</c:forEach>
+			<form action="">
+	
+			</form>
 		</div>
 	</center>
 </body>
