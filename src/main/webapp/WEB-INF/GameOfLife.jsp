@@ -26,9 +26,6 @@
 	    console.log( "ready!" );
 	    for (i = 1; i <100; i++) {
 			setTimeout(refreshMatrix, 2000*i);
-			if(i==99){
-				i=1;
-			}
 		}
 	});
 	
