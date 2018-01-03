@@ -24,7 +24,7 @@
 	}
 	$( document ).ready(function() {
 	    console.log( "ready!" );
-	    for (i = 1; i <100; i++) {
+	    for (i = 1; i <1000; i++) {
 			setTimeout(refreshMatrix, 2000*i);
 		}
 	});
@@ -39,9 +39,8 @@
 .div-table {
 	display: table;
 	width: auto;
-	background-color: #eee;
-	border: 1px solid #666666;
-	border-spacing: 5px; /* cellspacing:poor IE support for  this */
+	background-color: WHITE;
+	border: 1px solid BLACK;
 }
 
 .div-table-row {
@@ -53,15 +52,19 @@
 .table-col-red {
 	float: left; /* fix for  buggy browsers */
 	display: table-column;
-	width: 40px;
-	background-color: RED;
+	width: 10px;
+	height: 10px;
+	background-color: WHITE;
+	border: 1px solid BLACK;
 }
 
 .table-col-green {
 	float: left; /* fix for  buggy browsers */
 	display: table-column;
-	width: 40px;
+	width: 10px;
+	height: 10px;
 	background-color: GREEN;
+	border: 1px solid BLACK;
 }
 </style>
 </head>
@@ -72,13 +75,10 @@
 				<div class="div-table-row">
 					<c:forEach items="${row}" var="cell">
 						<div class="${cell.alive?'table-col-green':'table-col-red' }"
-							align="center">${cell.alive?'live':'dead'}</div>
+							align="center">&nbsp;</div>
 					</c:forEach>
 				</div>
 			</c:forEach>
-			<form action="">
-	
-			</form>
 		</div>
 	</center>
 </body>
