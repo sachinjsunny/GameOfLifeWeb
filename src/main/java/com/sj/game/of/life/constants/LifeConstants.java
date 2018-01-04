@@ -17,6 +17,8 @@ public final class LifeConstants {
 	
 	public static final String CROSS_IN_A_BOX = "CROSS_IN_A_BOX";
 	
+	public static final String SMALL_EXPLORER = "SMALL_EXPLORER";
+	
 	private LifeConstants() {
 		
 	}

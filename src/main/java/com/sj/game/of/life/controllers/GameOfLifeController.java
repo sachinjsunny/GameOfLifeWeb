@@ -31,6 +31,8 @@ public class GameOfLifeController {
 
 	private Cell[][] theMatrix;
 
+	private Cell[][] oldMatrix;
+
 	@RequestMapping(value = "/" + JSP_INDEX, method = RequestMethod.GET)
 	public String index() {
 		log.info(JSP_INDEX);
@@ -43,10 +45,20 @@ public class GameOfLifeController {
 			@RequestParam(defaultValue = "10", required = true, name = "matrixLength") String matrixLength) {
 		log.info(JSP_GOL);
 
-		theMatrix = getMatrix(selectedPattern,Integer.parseInt(matrixLength));
+		theMatrix = getMatrix(selectedPattern, Integer.parseInt(matrixLength));
+		populateOldMatrix();
 		model.put(MODEL_ATTR_MATRIX, theMatrix);
 
 		return JSP_GOL;
+	}
+
+	private void populateOldMatrix() {
+		oldMatrix = new Cell[theMatrix.length][theMatrix.length];
+		for (int rowIndex = 0; rowIndex < theMatrix.length; rowIndex++) {
+			for (int columnIndex = 0; columnIndex < theMatrix.length; columnIndex++) {
+				oldMatrix[rowIndex][columnIndex] = new Cell(theMatrix[rowIndex][columnIndex]);
+			}
+		}
 	}
 
 	@RequestMapping(value = "/refreshMatrix", method = RequestMethod.POST)
@@ -55,13 +67,14 @@ public class GameOfLifeController {
 
 		runGameOfLifeRules(theMatrix);
 		model.put(MODEL_ATTR_MATRIX, theMatrix);
+		populateOldMatrix();
 		return JSP_GOL;
 	}
 
 	private void runGameOfLifeRules(Cell[][] theMatrix) {
 		for (int rowIndex = 0; rowIndex < theMatrix.length; rowIndex++) {
 			for (int columnIndex = 0; columnIndex < theMatrix.length; columnIndex++) {
-				theMatrix[rowIndex][columnIndex].willIContinueToLiveInTheMatrix(theMatrix);
+				theMatrix[rowIndex][columnIndex].willIContinueToLiveInTheMatrix(oldMatrix);
 			}
 		}
 	}

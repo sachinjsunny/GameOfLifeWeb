@@ -18,7 +18,7 @@ public class Cell {
 	private int rowIndex;
 
 	private int columnIndex;
-
+	
 	/**
 	 * @param alive
 	 * @param rowIndex
@@ -29,6 +29,10 @@ public class Cell {
 		this.alive = alive;
 		this.rowIndex = rowIndex;
 		this.columnIndex = columnIndex;
+	}
+	
+	public Cell(Cell cellTOBeCopied){
+		this(cellTOBeCopied.alive, cellTOBeCopied.rowIndex, cellTOBeCopied.columnIndex);
 	}
 
 	/**
@@ -76,13 +80,13 @@ public class Cell {
 		this.columnIndex = columnIndex;
 	}
 
-	public int countLiveCellsAroundMe(Cell[][] theMatrix) {
+	public int countLiveCellsAroundMe(Cell[][] oldMatrix) {
 		int numberOfAliveCellsAroundMe = 0;
 
 		for (int row = rowIndex - 1; row <= rowIndex + 1; row++) {
 			for (int column = columnIndex - 1; column <= columnIndex + 1; column++) {
-				if (row >= 0 && column >= 0 && row < theMatrix.length && column < theMatrix.length
-						&& theMatrix[row][column].alive && !(row == rowIndex && column == columnIndex)) {
+				if (row >= 0 && column >= 0 && row < oldMatrix.length && column < oldMatrix.length
+						&& oldMatrix[row][column].alive && !(row == rowIndex && column == columnIndex)) {
 					numberOfAliveCellsAroundMe++;
 				}
 			}
@@ -91,8 +95,8 @@ public class Cell {
 		return numberOfAliveCellsAroundMe;
 	}
 
-	public void willIContinueToLiveInTheMatrix(Cell[][] theMatrix) {
-		int numberOfAliveCellsAroundMe = this.countLiveCellsAroundMe(theMatrix);
+	public void willIContinueToLiveInTheMatrix(Cell[][] oldMatrix) {
+		int numberOfAliveCellsAroundMe = this.countLiveCellsAroundMe(oldMatrix);
 		if (numberOfAliveCellsAroundMe > 8) {
 			log.debug(this.getRowIndex() + "," + this.getColumnIndex());
 		}

@@ -1,6 +1,6 @@
 package com.sj.game.of.life.factory;
 
-import static com.sj.game.of.life.constants.LifeConstants.ALL_FILLED;
+import static com.sj.game.of.life.constants.LifeConstants.*;
 import static com.sj.game.of.life.constants.LifeConstants.BOX;
 import static com.sj.game.of.life.constants.LifeConstants.CROSS;
 import static com.sj.game.of.life.constants.LifeConstants.CROSS_IN_A_BOX;
@@ -33,7 +33,8 @@ public final class InitialLifePattern {
 
 		for (int rowIndex = 0; rowIndex < matrixLength; rowIndex++) {
 			for (int columnIndex = 0; columnIndex < matrixLength; columnIndex++) {
-				if (rowIndex - 1 < 0 || columnIndex - 1 < 0 || rowIndex + 1 > (matrixLength - 1) || columnIndex + 1 > (matrixLength - 1)) {
+				if (rowIndex - 1 < 0 || columnIndex - 1 < 0 || rowIndex + 1 > (matrixLength - 1)
+						|| columnIndex + 1 > (matrixLength - 1)) {
 					box[rowIndex][columnIndex] = new Cell(true, rowIndex, columnIndex);
 				} else {
 					box[rowIndex][columnIndex] = new Cell(false, rowIndex, columnIndex);
@@ -83,10 +84,34 @@ public final class InitialLifePattern {
 			return createBoxPattern(matrixLength);
 		case CROSS:
 			return createCrossPattern(matrixLength);
+		case SMALL_EXPLORER:
+			return createSmallExplorerPattern(matrixLength);
 		case ALL_FILLED:
 		default:
 			return createAllFilledPattern(matrixLength);
 		}
 
+	}
+
+	private static Cell[][] createSmallExplorerPattern(int matrixLength) {
+		Cell[][] smallExplorer = new Cell[matrixLength][matrixLength];
+
+		int halfLength = matrixLength / 2;
+
+		for (int rowIndex = 0; rowIndex < matrixLength; rowIndex++) {
+			for (int columnIndex = 0; columnIndex < matrixLength; columnIndex++) {
+				if ((rowIndex == halfLength && columnIndex == halfLength)
+						|| (rowIndex - 1 == halfLength && (columnIndex - 1 == halfLength || columnIndex == halfLength
+								|| columnIndex + 1 == halfLength))
+						|| (rowIndex - 2 == halfLength
+								&& (columnIndex - 1 == halfLength || columnIndex + 1 == halfLength))
+						|| (rowIndex - 3 == halfLength && columnIndex == halfLength)) {
+					smallExplorer[rowIndex][columnIndex] = new Cell(true, rowIndex, columnIndex);
+				} else {
+					smallExplorer[rowIndex][columnIndex] = new Cell(false, rowIndex, columnIndex);
+				}
+			}
+		}
+		return smallExplorer;
 	}
 }
