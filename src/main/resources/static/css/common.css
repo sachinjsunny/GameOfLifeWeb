@@ -1,0 +1,30 @@
+.div-table {
+	display: table;
+	width: auto;
+	background-color: WHITE;
+	border: 1px solid BLACK;
+}
+
+.div-table-row {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+
+.table-col-red {
+	float: left; /* fix for  buggy browsers */
+	display: table-column;
+	width: 10px;
+	height: 10px;
+	background-color: WHITE;
+	border: 0.5px solid BLACK;
+}
+
+.table-col-green {
+	float: left; /* fix for  buggy browsers */
+	display: table-column;
+	width: 10px;
+	height: 10px;
+	background-color: GREEN;
+	border: 0.5px solid BLACK;
+}

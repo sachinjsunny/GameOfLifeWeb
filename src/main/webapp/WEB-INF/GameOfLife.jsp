@@ -7,66 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Game of Life</title>
+<link href="css/common.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-	
-	function refreshMatrix(){
-		var refrehsUrl = "<%=request.getContextPath()%>/refreshMatrix";
-		$.ajax({
-			url : refrehsUrl,
-			type : 'POST',
-			success : handleRefreshData,
-			error : function(e) {
-				alert('Error: ' + e);
-			}
-		});
-	}
-	$( document ).ready(function() {
-	    console.log( "ready!" );
-	    for (i = 1; i <1000; i++) {
-			setTimeout(refreshMatrix, 2000*i);
-		}
+<script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		console.log("ready!");
+		setTimeout(refreshMatrix, 1000);
 	});
-	
-	function handleRefreshData(resp){
-		$("#theMatrix").empty();
-		var newMatrix = $(resp).find('#theMatrix').html();
-		$("#theMatrix").html(newMatrix);
-	}
 </script>
-<style type="text/css">
-.div-table {
-	display: table;
-	width: auto;
-	background-color: WHITE;
-	border: 1px solid BLACK;
-}
-
-.div-table-row {
-	display: table-row;
-	width: auto;
-	clear: both;
-}
-
-.table-col-red {
-	float: left; /* fix for  buggy browsers */
-	display: table-column;
-	width: 10px;
-	height: 10px;
-	background-color: WHITE;
-	border: 1px solid BLACK;
-}
-
-.table-col-green {
-	float: left; /* fix for  buggy browsers */
-	display: table-column;
-	width: 10px;
-	height: 10px;
-	background-color: GREEN;
-	border: 1px solid BLACK;
-}
-</style>
 </head>
 <body>
 	<center>
