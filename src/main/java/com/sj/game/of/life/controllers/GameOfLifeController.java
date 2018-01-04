@@ -7,6 +7,7 @@ import static com.sj.game.of.life.constants.LifeConstants.ALL_FILLED;
 import static com.sj.game.of.life.constants.WebConstants.JSP_GOL;
 import static com.sj.game.of.life.constants.WebConstants.JSP_INDEX;
 import static com.sj.game.of.life.constants.WebConstants.MODEL_ATTR_MATRIX;
+import static com.sj.game.of.life.constants.WebConstants.MODEL_ATTR_SELECTED_PATTERN;
 import static com.sj.game.of.life.factory.InitialLifePattern.getMatrix;
 
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class GameOfLifeController {
 	private Cell[][] theMatrix;
 
 	private Cell[][] oldMatrix;
+	
+	private String selectedPattern;
 
 	@RequestMapping(value = "/" + JSP_INDEX, method = RequestMethod.GET)
 	public String index() {
@@ -44,11 +47,11 @@ public class GameOfLifeController {
 			@RequestParam(defaultValue = ALL_FILLED, required = true, name = "selectedPattern") String selectedPattern,
 			@RequestParam(defaultValue = "10", required = true, name = "matrixLength") String matrixLength) {
 		log.info(JSP_GOL);
-
+		this.selectedPattern=selectedPattern;
 		theMatrix = getMatrix(selectedPattern, Integer.parseInt(matrixLength));
 		populateOldMatrix();
 		model.put(MODEL_ATTR_MATRIX, theMatrix);
-
+		model.put(MODEL_ATTR_SELECTED_PATTERN, this.selectedPattern);
 		return JSP_GOL;
 	}
 
@@ -67,6 +70,7 @@ public class GameOfLifeController {
 
 		runGameOfLifeRules(theMatrix);
 		model.put(MODEL_ATTR_MATRIX, theMatrix);
+		model.put(MODEL_ATTR_SELECTED_PATTERN, this.selectedPattern);
 		populateOldMatrix();
 		return JSP_GOL;
 	}

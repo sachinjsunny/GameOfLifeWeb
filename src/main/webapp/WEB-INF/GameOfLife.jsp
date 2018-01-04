@@ -70,6 +70,7 @@
 </head>
 <body>
 	<center>
+		<h4>${selectedPattern}</h4>
 		<div class="div-table" id="theMatrix">
 			<c:forEach items="${matrix}" var="row">
 				<div class="div-table-row">
