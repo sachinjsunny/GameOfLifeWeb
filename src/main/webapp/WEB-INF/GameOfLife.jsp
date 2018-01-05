@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		console.log("ready!");
-		setTimeout(refreshMatrix, 1000);
+		setTimeout(refreshMatrix, 500);
 	});
 </script>
 </head>

@@ -23,5 +23,5 @@ function refreshMatrix(){
 			console.log('Error: ' + e);
 		}
 	});
-	setTimeout(refreshMatrix,1000);
+	setTimeout(refreshMatrix,500);
 }

@@ -19,6 +19,10 @@ public final class LifeConstants {
 	
 	public static final String SMALL_EXPLORER = "SMALL_EXPLORER";
 	
+	public static final String DIAMOND = "DIAMOND";
+	
+	public static final String PLUS = "PLUS";
+	
 	private LifeConstants() {
 		
 	}
