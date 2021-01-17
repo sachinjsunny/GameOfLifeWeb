@@ -16,7 +16,7 @@
 	display: table-column;
 	width: 10px;
 	height: 10px;
-	background-color: WHITE;
+	background-color: GREEN;
 	border: 0.5px solid BLACK;
 }
 
@@ -25,6 +25,6 @@
 	display: table-column;
 	width: 10px;
 	height: 10px;
-	background-color: GREEN;
+	background-color: RED;
 	border: 0.5px solid BLACK;
 }

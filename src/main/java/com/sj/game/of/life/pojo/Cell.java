@@ -3,7 +3,8 @@
  */
 package com.sj.game.of.life.pojo;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author sachinjsunny
@@ -11,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class Cell {
 
-	private static Logger log = Logger.getLogger(Cell.class);
+	private static Logger log = LoggerFactory.getLogger(Cell.class);
 
 	private boolean alive;
 
