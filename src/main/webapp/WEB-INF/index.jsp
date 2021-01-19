@@ -31,6 +31,8 @@
 			<option value="SMALL_EXPLORER">SMALL_EXPLORER</option>
 			<option value="DIAMOND">Diamond</option>
 			<option value="PLUS">Plus</option>
+			<option value="PYRAMID">Pyramid</option>
+			<option value="SOLID_DIAMOND">Solid Diamond</option>
 			<option value="ALL">All</option>
 		</select>
 	</form>

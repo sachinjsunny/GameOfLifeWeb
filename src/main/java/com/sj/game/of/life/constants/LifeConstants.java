@@ -23,6 +23,10 @@ public final class LifeConstants {
 	
 	public static final String PLUS = "PLUS";
 	
+	public static final String PYRAMID = "PYRAMID";
+	
+	public static final String SOLID_DIAMOND = "SOLID_DIAMOND";
+	
 	private LifeConstants() {
 		
 	}
